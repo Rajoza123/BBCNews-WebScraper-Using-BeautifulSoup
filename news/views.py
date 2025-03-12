@@ -254,7 +254,7 @@ def homepage(request):
     return render(request, 'home.html', {'top_news': top_news,'weather': weather})
 
 def get_weather_data():
-    API_KEY = '4eddc68ee10d70e33064420ecbe3bb5c'  # Replace with your OpenWeather API key
+    API_KEY = ''  # Replace with your OpenWeather API key
     CITY = 'Rajkot'  # Change this to your preferred city
     url = f'http://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY}&units=metric'
     
