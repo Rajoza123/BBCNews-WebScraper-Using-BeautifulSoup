@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - News Aggregator{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Latest Headlines</h1>
+        <form method="GET" action="{% url 'business' %}" class="mb-3">
+            <input type="text" name="q" value="{{ search_query }}" placeholder="Search articles..." class="form-control" />
+            <button type="submit" class="btn btn-primary mt-2">Search</button>
+        </form>
+        <div class="row">
+            {% for headlines ,links , image_sources in context %}
+                <div class="col-md-4 mb-4">  <!-- Adjust the column size as needed -->
+                    <div class="card shadow-lg border-light rounded">
+                        <img src="{{ image_sources }}" alt="Image for {{ headline }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ headlines }}</h5>
+                            <a href="{{ links }}" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block styles %}
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background */
+        }
+        h1 {
+            color: #343a40; /* Dark color for the title */
+        }
+        .card {
+            background-color: #ffffff; /* White background for cards */
+            border-radius: 8px; /* Rounded corners */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+        }
+        .btn-primary {
+            background-color: #007bff; /* Bootstrap primary color */
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - News Aggregator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    
+    <div class="container mt-5">
+        <h2 class="text-center">Profile</h2>
+        <div class="card">
+            <div class="card-body">
+                <!-- Display Username -->
+                {% if user.is_authenticated %}
+                    <h5 class="card-title">Username: {{ user.username }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Email: {{ user.email }}</h6>
+                {% else %}
+                    <p>User is not authenticated.</p>
+                {% endif %}
+            </div>
+        </div>
+        <!-- Logout Button -->
+        <a href="{% url 'logout' %}" class="btn btn-danger mt-3">Logout</a>
+    </div>
+    <!-- Script Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

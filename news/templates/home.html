@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - News Aggregator{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">Top News</h1>
+
+        <!-- Weather Section -->
+        {% if weather %}
+        <section class="mb-5">
+            <h2 class="text-info">Current Weather</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <div class="card text-center bg-light shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Weather</h5>
+                            <img src="http://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="Weather icon" class="mb-2">
+                            <p class="card-text">{{ weather.temp }}°C - {{ weather.description|title }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Sports Section -->
+        <section class="mb-5">
+            <h2 class="text-primary">Sports</h2>
+            <div class="row">
+                {% for headline, link, image in top_news.sports %}
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <a href="{{ link }}">
+                                <img src="{{ image }}" class="card-img-top" alt="{{ headline }}">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ headline }}</h5>
+                                <a href="{{ link }}" class="btn btn-outline-primary">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Entertainment Section -->
+        <section class="mb-5">
+            <h2 class="text-success">Entertainment</h2>
+            <div class="row">
+                {% for headline, link, image in top_news.entertainment %}
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <a href="{{ link }}">
+                                <img src="{{ image }}" class="card-img-top" alt="{{ headline }}">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ headline }}</h5>
+                                <a href="{{ link }}" class="btn btn-outline-success">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Business Section -->
+        <section class="mb-5">
+            <h2 class="text-danger">Business</h2>
+            <div class="row">
+                {% for headline, link, image in top_news.business %}
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <a href="{{ link }}">
+                                <img src="{{ image }}" class="card-img-top" alt="{{ headline }}">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ headline }}</h5>
+                                <a href="{{ link }}" class="btn btn-outline-danger">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+{% endblock %}
